@@ -17,6 +17,7 @@ struct Post {
 }
 
 struct Comment {
+    let id: String
     let user: User
     let text: String
     let date: Date
@@ -70,7 +71,7 @@ class TedoooApi {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             completion(.success(.init(hasMore: self.randomInt(min: 0, max: 5) != 4, comments: (0...10).map({ _ in
                 let diffInterval: TimeInterval = TimeInterval(self.randomInt(min: 0, max: 3600 * 24 * 30))
-                return Comment(user: self.randomUser(), text: UUID().uuidString, date: Date(timeIntervalSinceNow: -diffInterval))
+                return Comment(id: UUID().uuidString, user: self.randomUser(), text: UUID().uuidString, date: Date(timeIntervalSinceNow: -diffInterval))
             }))))
         }
     }
